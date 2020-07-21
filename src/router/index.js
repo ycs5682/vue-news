@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
   routes: [
     {
-      path: '/news',
+      path: '/',
       component: NewsView
     },
     {
