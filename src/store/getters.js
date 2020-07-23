@@ -1,11 +1,14 @@
 export default {
-  fetcheNews(state) {
+  fetchedNews(state) {
     return state.news;
   },
-  fetcheAsk(state) {
+  fetchedAsk(state) {
     return state.ask;
   },
-  fetcheJobs(state) {
+  fetchedJobs(state) {
     return state.jobs;
+  },
+  fetchedItem(state) {
+    return state.item;
   }
 };

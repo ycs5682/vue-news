@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-for="item in fetcheAsk" :key="item.title">
+    <p v-for="item in fetchedAsk" :key="item.title">
       <router-link :to="`item/${item.id}`">
         {{ item.title }}
       </router-link>
@@ -14,7 +14,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(['fetcheAsk'])
+    ...mapGetters(['fetchedAsk'])
   },
   created() {
     this.$store.dispatch('FETCH_ASK');
