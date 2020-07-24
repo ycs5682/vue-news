@@ -1,9 +1,9 @@
 <template>
   <div>
     <ul class="news-list">
-      <li v-for="item in fetchedNews" :key="item.title" class="post">
+      <li v-for="item in listItems" :key="item.title" class="post">
         <div class="points">
-          {{ item.points }}
+          {{ item.points || 0 }}
         </div>
         <div>
           <p class="new-title">
@@ -22,23 +22,25 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
   created() {
-    // this.$store.dispatch('FETCH_NEWS'), this.$store.dispatch('FETCH_ASK');
-    const name = this.$route.name;
-    const dispatch = this.$store.dispatch;
-    if (name === 'news') {
-      dispatch('FETCH_NEWS');
-    } else if (name === 'ask') {
-      dispatch('FETCH_ASK');
-    } else if (name === 'jobs') {
-      dispatch('FETCH_JOBS');
+    if (this.$route.name === 'news') {
+      this.$store.dispatch('FETCH_NEWS');
+    } else if (this.$route.name === 'ask') {
+      this.$store.dispatch('FETCH_ASK');
+    } else if (this.$route.name === 'jobs') {
+      this.$store.dispatch('FETCH_JOBS');
     }
   },
   computed: {
-    ...mapGetters(['fetchedNews']),
-    ...mapGetters(['fetchedAsk'])
+    listItems() {
+      if (this.$route.name === 'news') {
+        return this.$store.state.news;
+      } else if (this.$route.name === 'ask') {
+        return this.$store.state.ask;
+      } else this.$route.name === 'jobs';
+      return this.$store.state.jobs;
+    }
   }
 };
 </script>
