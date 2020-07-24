@@ -6,27 +6,28 @@
           <i class="fas fa-user"></i>
         </div>
         <div class="user-description">
-          <router-link :to="`/user/${fetchedItem.user}`">
-            {{ fetchedItem.user }}
+          <router-link :to="`/user/${itemInfo.user}`">
+            {{ itemInfo.user }}
           </router-link>
           <div class="time">
-            {{ fetchedItem.time_ago }}
+            {{ itemInfo.time_ago }}
           </div>
         </div>
       </div>
-      <h2>{{ fetchedItem.title }}</h2>
+      <h2>{{ itemInfo.title }}</h2>
     </sections>
     <sections>
-      <div v-html="fetchedItem.content"></div>
+      <div v-html="itemInfo.content"></div>
     </sections>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
   computed: {
-    ...mapGetters(['fetchedItem'])
+    itemInfo() {
+      return this.$store.state.item;
+    }
   },
   created() {
     const itemId = this.$route.params.id;

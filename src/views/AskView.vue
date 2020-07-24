@@ -8,12 +8,5 @@ export default {
   components: {
     ListItem
   }
-
-  // computed: {
-  //   ...mapGetters(['fetchedAsk'])
-  // },
-  // created() {
-  //   this.$store.dispatch('FETCH_ASK');
-  // }
 };
 </script>

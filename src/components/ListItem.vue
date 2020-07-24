@@ -1,19 +1,32 @@
 <template>
   <div>
     <ul class="news-list">
-      <li v-for="item in listItems" :key="item.title" class="post">
+      <li v-for="item in listItems" :key="item" class="post">
         <div class="points">
           {{ item.points || 0 }}
         </div>
         <div>
           <p class="new-title">
-            <a :href="item.url">
-              {{ item.title }}
-            </a>
+            <template v-if="item.domain">
+              <a :href="item.url">
+                {{ item.title }}
+              </a>
+            </template>
+            <template v-else>
+              <router-link :to="`item/${item.id}`">
+                {{ item.title }}
+              </router-link>
+            </template>
           </p>
           <small class="link-text">
-            by
-            <router-link :to="`/user/${item.user}`" class="link-text">{{ item.user }} </router-link>
+            {{ item.time_ago }} by
+
+            <router-link v-if="item.user" :to="`/user/${item.user}`" class="link-text">
+              {{ item.user }}
+            </router-link>
+            <a :href="item.url" v-else>
+              {{ item.domain }}
+            </a>
           </small>
         </div>
       </li>
