@@ -1,5 +1,24 @@
 <template>
   <div>
+    <ul class="news-list">
+      <li v-for="job in fetchedJobs" :key="job.title" class="post">
+        <div class="points">
+          {{ job.points || 0 }}
+        </div>
+        <div>
+          <p class="new-title">
+            <a :href="job.url">
+              {{ job.title }}
+            </a>
+          </p>
+          <small class="link-text">
+            {{ job.time_ago }} by
+            <a :href="job.url">{{ job.domain }} </a>
+          </small>
+        </div>
+      </li>
+    </ul>
+
     <p v-for="job in fetchedJobs" :key="job.title">
       <a :href="job.url">
         {{ job.title }}
@@ -22,4 +41,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.news-list {
+  padding: 0;
+  margin: 0;
+}
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42b883;
+}
+.news-title {
+  margin: 0;
+}
+.link-text {
+  color: #828282;
+}
+</style>
