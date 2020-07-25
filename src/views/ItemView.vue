@@ -1,21 +1,12 @@
 <template>
   <div>
     <sections>
-      <div class="user-container">
-        <div>
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="user-description">
-          <router-link :to="`/user/${itemInfo.user}`">
-            {{ itemInfo.user }}
-          </router-link>
-          <div class="time">
-            {{ itemInfo.time_ago }}
-          </div>
-        </div>
-      </div>
-      <h2>{{ itemInfo.title }}</h2>
+      <user-profile :info="itemInfo">
+        <div slot="username">{{ itemInfo.user }}</div>
+        <template slot="time">{{ itemInfo.time_ago }}</template>
+      </user-profile>
     </sections>
+    <h2>{{ itemInfo.title }}</h2>
     <sections>
       <div v-html="itemInfo.content"></div>
     </sections>
@@ -23,7 +14,11 @@
 </template>
 
 <script>
+import UserProfile from '../components/UserProfiie.vue';
 export default {
+  components: {
+    UserProfile
+  },
   computed: {
     itemInfo() {
       return this.$store.state.item;

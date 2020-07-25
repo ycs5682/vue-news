@@ -4,23 +4,28 @@
       <i class="fas fa-user"></i>
     </div>
     <div class="user-description">
-      <!-- <router-link :to="`/user/${itemInfo.user}`">
-        {{ itemInfo.user }}
-      </router-link> -->
-      <!-- <div class="time">
-        {{ itemInfo.time_ago }}
-      </div> -->
+      <slot name="username"></slot>
+      <div class="time">
+        <slot name="time"></slot>
+      </div>
+      <div>
+        <slot name="karma"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    info: Object
+  }
+};
 </script>
 
 <style scoped>
 .user-container {
-  display: flex; 
+  display: flex;
   align-items: center;
   padding: 0.5rem;
 }
@@ -33,5 +38,4 @@ export default {};
 .time {
   font-size: 0.7rem;
 }
-</>
-
+</style>
