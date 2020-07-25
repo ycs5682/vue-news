@@ -1,13 +1,18 @@
 <template>
   <div>
-    <p>name: {{ userInfo.user.id }}</p>
+    <user-profile></user-profile>
+    <!-- <p>name: {{ userInfo.user.id }}</p>
     <p>karma: {{ userInfo.user.karma }}</p>
-    <p>created: {{ userInfo.user.created }}</p>
+    <p>created: {{ userInfo.user.created }}</p> -->
   </div>
 </template>
 
 <script>
+import UserProfile from '../components/UserProfiie.vue';
 export default {
+  components: {
+    UserProfile
+  },
   computed: {
     userInfo() {
       return this.$store.state;
